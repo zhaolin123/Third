@@ -1,0 +1,33 @@
+import torch
+import torch.nn as nn
+import torch.nn.functional as F
+from torch.autograd import Variable
+
+import torchvision
+from torchvision import datasets
+from torchvision import transforms
+from torchvision.utils import save_image
+from torchsummary import summary
+
+# from pushover import notify
+# from utils import makegif
+from random import randint
+
+from IPython.display import Image
+from IPython.core.display import Image, display
+
+# %load_ext autoreload
+# %autoreload 2
+
+import imageio
+from pathlib import Path
+
+
+def makegif(folder='reconstructed', name='recon_image', ext='jpg'):
+    images = []
+    for file in sorted([file for file in Path(folder).glob(f'*.{ext}')]):
+        images.append(imageio.imread(str(file)))
+        
+
+    imageio.mimsave(f'{name}.gif', images)
+    print("Done!")
